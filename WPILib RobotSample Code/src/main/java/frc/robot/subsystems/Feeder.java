@@ -1,35 +1,29 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.XboxController;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class controlBoard extends SubsystemBase {
+public class Feeder extends SubsystemBase {
   //Hardware ----------------------------------------------------------------->
-  public final XboxController driverControl = new XboxController(0);
-  public final XboxController operatorControl = new XboxController(1);
+  public final CANSparkMax motorFeeder = new CANSparkMax(0, MotorType.kBrushless);
 
   //INPUTS ------------------------------------------------------------------>
       
   //OUTPUTS ----------------------------------------------------------------->
-      
+  double final_feeder_demand;
+    
   //Logic ----------------------------------------------------------------->
   
     
-  public controlBoard() {} //constructor del subsistema
+  public Feeder() {} //constructor del subsistema
 
   //------------------// Funciones del subsistema //-------------------------------//
 
   //funcion principal de Drive con argumentos de entrada de controles
-  public boolean getXButton(){
-    return operatorControl.getRawButton(3);
-  }
-
-  public boolean getYButton(){
-    return operatorControl.getRawButton(4);
-  }
-
-  public double getRightTrigger(){
-    return operatorControl.getRawAxis(1);
+  public void activateFeeder(double feederSpeed){
+    motorFeeder.set(feederSpeed);
   }
 
   @Override

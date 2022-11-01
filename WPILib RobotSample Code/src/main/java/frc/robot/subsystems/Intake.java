@@ -1,35 +1,40 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.XboxController;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class controlBoard extends SubsystemBase {
+public class Intake extends SubsystemBase {
   //Hardware ----------------------------------------------------------------->
-  public final XboxController driverControl = new XboxController(0);
-  public final XboxController operatorControl = new XboxController(1);
+  public final DoubleSolenoid pistonIntake = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 7); 
+  public final CANSparkMax motorIntake = new CANSparkMax(0, MotorType.kBrushless);
 
   //INPUTS ------------------------------------------------------------------>
       
   //OUTPUTS ----------------------------------------------------------------->
-      
+  double final_intake_demand = 0.7;
+    
   //Logic ----------------------------------------------------------------->
   
     
-  public controlBoard() {} //constructor del subsistema
+  public Intake() {} //constructor del subsistema
 
   //------------------// Funciones del subsistema //-------------------------------//
 
   //funcion principal de Drive con argumentos de entrada de controles
-  public boolean getXButton(){
-    return operatorControl.getRawButton(3);
-  }
-
-  public boolean getYButton(){
-    return operatorControl.getRawButton(4);
-  }
-
-  public double getRightTrigger(){
-    return operatorControl.getRawAxis(1);
+  public void deployIntake(boolean active){
+    if(active){
+        pistonIntake.set(Value.kForward);
+        motorIntake.set(final_intake_demand);
+    }
+    else{
+        pistonIntake.set(Value.kReverse);
+        motorIntake.set(0);
+    } 
   }
 
   @Override

@@ -1,35 +1,31 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.XboxController;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class controlBoard extends SubsystemBase {
+public class Shooter extends SubsystemBase {
   //Hardware ----------------------------------------------------------------->
-  public final XboxController driverControl = new XboxController(0);
-  public final XboxController operatorControl = new XboxController(1);
+  public final TalonFX motorShooter1 = new TalonFX(0);
+  public final TalonFX motorShooter2 = new TalonFX(1);
 
   //INPUTS ------------------------------------------------------------------>
       
   //OUTPUTS ----------------------------------------------------------------->
-      
+  double final_shooter_demand;
+    
   //Logic ----------------------------------------------------------------->
   
     
-  public controlBoard() {} //constructor del subsistema
+  public Shooter() {} //constructor del subsistema
 
   //------------------// Funciones del subsistema //-------------------------------//
 
   //funcion principal de Drive con argumentos de entrada de controles
-  public boolean getXButton(){
-    return operatorControl.getRawButton(3);
-  }
-
-  public boolean getYButton(){
-    return operatorControl.getRawButton(4);
-  }
-
-  public double getRightTrigger(){
-    return operatorControl.getRawAxis(1);
+  public void activateShooter(double feederSpeed){
+    motorShooter1.set(ControlMode.PercentOutput, feederSpeed);
+    motorShooter2.set(ControlMode.PercentOutput, -feederSpeed);
   }
 
   @Override
