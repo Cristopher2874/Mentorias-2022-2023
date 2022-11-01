@@ -26,7 +26,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer; //aqui declaramos todo lo que vamos a usar
 
   //Neumatica
-  Compressor compressor1 = new Compressor(0,PneumaticsModuleType.CTREPCM); //creas el objeto compresor
+  Compressor compressor1 = new Compressor(0,PneumaticsModuleType.CTREPCM); //creas el objeto compresor para poder usarlo
   private final Solenoid piston2 = new Solenoid(PneumaticsModuleType.CTREPCM, 0); //declaracion del piston
 
   //Declaracion de motores
@@ -46,7 +46,7 @@ public class Robot extends TimedRobot {
   double speedF = 0.8;
 
   //Declaracion del control
-  private final XboxController control1 = new XboxController(0);
+  
 
   @Override
   public void robotInit() {
