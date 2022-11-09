@@ -16,12 +16,18 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.Auto.Actions.GetTimeAction;
+import frc.robot.Auto.Actions.MoveForwardAction;
+import frc.robot.Auto.Actions.StopAction;
+import frc.robot.Auto.Modes.LineTimer;
 import frc.robot.subsystems.DriveExample;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
-  private RobotContainer m_robotContainer; //aqui declaramos todo lo que vamos a usar
+  private RobotContainer m_robotContainer; 
+  //aqui declaramos todo lo que vamos a usar
+  //NO SE DEBE PONER PASOS DE LOGICA, SIMPLEMENTE DECLARAR O INICIALIZAR VARIABLES
 
   DriveExample mDriveExample = new DriveExample(); //Declaración de un objeto tipo DriveExample para poder usar las funciones dentro de ese archivo
   //podemos mandar llamar las funciones usando el nombre del nuevo objeto
@@ -48,6 +54,12 @@ public class Robot extends TimedRobot {
   boolean Bbutton = false;
   boolean Xbutton = false;
   double speedF = 0.8;
+
+  //Declaramos los objetos de los archivos del autonomo para poder heredar las funciones de cada uno
+  GetTimeAction mAutoTimer = new GetTimeAction();
+  MoveForwardAction mMoveForwardAction = new MoveForwardAction();
+  StopAction mStopAction = new StopAction();
+  LineTimer mLineTimerMode = new LineTimer();
 
   @Override
   public void robotInit() {
@@ -76,26 +88,38 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }
+    //Aqui va todo lo que hay que declarar cuando inicie el autonomo
+
+    mAutoTimer.autoRelativeTimeControl(); //inicializar el timeStap relativo a auto
   }
 
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+
+    //Aqui va todo lo que se va a ejecutar durante el autonomo
+
+    mAutoTimer.autoAbsoluteTimeControl(); //inicializa el timeStap absoluto
+    if(mAutoTimer.getAbsoluteTimer()-mAutoTimer.getRelativeTimer()<2){ //esta lógica se manda llamar para contar el tiempo que se tarda en ejecutar la accion (2 seg en este caso)
+      mMoveForwardAction.finalMoveForwardACtion(); //mandar llamar la funcion del subsistema de auto
+    }
+    else mStopAction.finalStopAction(); //detener el robot cuando haya pasado el tiempo que se pidio
+  }
 
   @Override
   public void teleopInit() {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    //Aqui se pone lo que hay que hacer al iniciar el teleoperado
   }
 
   //Lo que se va a ejecutar durante el match
   @Override
   public void teleopPeriodic() {
+
+    //en esta parte se agrega la LOGICA y las funciones de todo lo que se va a hacer en el teleoperado
+
     rightDemand = control1.getRawAxis(3); //obtener los datos del control y pasarlos a las variables
     leftDemand = control1.getRawAxis(2); //cada variable que declaramos en el robot container se iguala a un valor del control
     totalDemand = control1.getRawAxis(1);

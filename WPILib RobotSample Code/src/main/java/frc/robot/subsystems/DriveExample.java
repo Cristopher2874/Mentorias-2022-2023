@@ -40,6 +40,15 @@ public class DriveExample extends SubsystemBase {
   }
   //esta función se puede mandar llamar en el robot
 
+  //Funcion para mandar llamar en el autonomo  
+  public void outMotoresAuto( double frontRightDemand, double backRightDemand, 
+    double frontLeftDemand, double backleftDemand ){
+      motorDrive1.set(ControlMode.PercentOutput, frontRightDemand);
+      motorDrive2.set(ControlMode.PercentOutput, backRightDemand);
+      motorDrive3.set(ControlMode.PercentOutput, frontLeftDemand);
+      motorDrive4.set(ControlMode.PercentOutput, backleftDemand);
+  }
+
   public void HeredaExample(){
     stickInput = mOperatorControl.getControlXAxis(); //usamos el objeto tipo ControlBoard para mandar llamar una función dentro de ese archivo, en este caso mandamos llamar getControlXAxis
     //estamos heredando la función dentro del subsistema de Drive
