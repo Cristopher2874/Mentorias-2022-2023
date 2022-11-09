@@ -9,25 +9,27 @@ import frc.robot.Constants;
 
 public class DriveExample extends SubsystemBase {
 
-    ControlBoard1 mOperatorControl = new ControlBoard1();//declaracion de un objeto tipo ControlBoard para usar las funciones de ese archivo
+  ControlBoard1 mOperatorControl = new ControlBoard1();//declaracion de un objeto tipo ControlBoard para usar las funciones de ese archivo
 
-    //ponemos el nombre del archivo, luego el nombre del objeto (puede ser el que quieran) y lo igualamos a un nuevo constructor
+  //ponemos el nombre del archivo, luego el nombre del objeto (puede ser el que quieran) y lo igualamos a un nuevo constructor
 
-    //Hardware
-    TalonSRX motorDrive1 = new TalonSRX(Constants.kFrontRightDriveID); //declaración de los motores dentro del subsistema
-    TalonSRX motorDrive2 = new TalonSRX(Constants.kFrontLeftDriveID); //cada ID se declara en el archivo de constants
-    TalonSRX motorDrive3 = new TalonSRX(Constants.kBackLeftDriveID); //se heredan los ID's desde el otro archivo para cambiarlos facilmente
-    TalonSRX motorDrive4 = new TalonSRX(Constants.kBackRightDriveID);
+  //Hardware ----------------------------------------------------------------->
+  TalonSRX motorDrive1 = new TalonSRX(Constants.kFrontRightDriveID); //declaración de los motores dentro del subsistema
+  TalonSRX motorDrive2 = new TalonSRX(Constants.kFrontLeftDriveID); //cada ID se declara en el archivo de constants
+  TalonSRX motorDrive3 = new TalonSRX(Constants.kBackLeftDriveID); //se heredan los ID's desde el otro archivo para cambiarlos facilmente
+  TalonSRX motorDrive4 = new TalonSRX(Constants.kBackRightDriveID);
 
-    //INPUTS
+  //INPUTS ------------------------------------------------------------------>
 
-    //OUTPUTS
+  //OUTPUTS ----------------------------------------------------------------->
 
-    //Control
-    final double speed = 0.5;
-    double stickInput = 0; //variable para guardar los datos del stick
+  //Logic ----------------------------------------------------------------->
+  final double speed = 0.5;
+  double stickInput = 0; //variable para guardar los datos del stick
   
   public DriveExample() {} //constructor del subsistema para hacer pasos logicos
+
+  //------------------// Funciones del subsistema //-------------------------------//
 
   //Declaracion de una funcion dentro del subsistema
   public void SimpleDrive(){

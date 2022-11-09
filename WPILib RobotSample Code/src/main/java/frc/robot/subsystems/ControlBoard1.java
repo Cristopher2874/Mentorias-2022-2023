@@ -5,15 +5,15 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ControlBoard1 extends SubsystemBase {
 
-    //Hardware
-    private final XboxController operatorControl = new XboxController(1); //declaración del control dentro del puerto 1
+  //Hardware ----------------------------------------------------------------->
+  private final XboxController operatorControl = new XboxController(1); //declaración del control dentro del puerto 1
 
-    //INPUTS
+  //INPUTS ------------------------------------------------------------------>
 
-    //OUTPUTS
+  //OUTPUTS ----------------------------------------------------------------->
 
-    //Control
-    int Y_LeftAxis = 1, X_LeftAxis = 2, A_Button = 1;
+  //Logic ----------------------------------------------------------------->
+  int Y_LeftAxis = 1, X_LeftAxis = 2, A_Button = 1;
   
   public ControlBoard1(){} //Constructor del subsistema para todas las variables
 
