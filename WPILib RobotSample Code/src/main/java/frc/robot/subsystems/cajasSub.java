@@ -1,38 +1,34 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 
-public class Intake extends SubsystemBase {
+public class cajasSub extends SubsystemBase {
   //Hardware ----------------------------------------------------------------->
-  //public final TalonSRX motorIntake1 = new TalonSRX(Constants.kIntakeId); //usamos el ID de constants
-  public final VictorSPX motorIntake1 = new VictorSPX(Constants.kIntakeId);
-  public final VictorSPX motorIntake2 = new VictorSPX(5);
+  public final TalonSRX motorBrazo = new TalonSRX(6); //usamos el ID de constants
+  //public final VictorSpx motorBrazo = new TalonSRX(6); //usamos el ID de constants
 
   //INPUTS ------------------------------------------------------------------>
       
   //OUTPUTS ----------------------------------------------------------------->
-  double final_intake_demand = 0.7; //variable para control de velocidad
+  double final_brazo_demand = 0.7; //variable para control de velocidad
     
   //Logic ----------------------------------------------------------------->
   
     
-  public Intake() {} //constructor del subsistema
+  public cajasSub() {} //constructor del subsistema
 
   //------------------// Funciones del subsistema //-------------------------------//
 
   //funcion principal de Drive con argumentos de entrada de controles
-  public void deployIntake(boolean active){
+  public void deployArm(boolean active){
     if(active){ //if que evalua la funcion usando el argumento que se le entrega a la funcion
-        motorIntake1.set(ControlMode.PercentOutput, final_intake_demand);
-        motorIntake2.set(ControlMode.PercentOutput, final_intake_demand);
+        motorBrazo.set(ControlMode.PercentOutput, final_brazo_demand);
     }
     else{
-        motorIntake1.set(ControlMode.PercentOutput, 0);
-        motorIntake2.set(ControlMode.PercentOutput, 0);
+        motorBrazo.set(ControlMode.PercentOutput, 0);
     } 
   }
 

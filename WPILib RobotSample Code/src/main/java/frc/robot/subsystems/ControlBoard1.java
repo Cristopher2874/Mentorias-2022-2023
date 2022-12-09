@@ -2,11 +2,13 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class ControlBoard1 extends SubsystemBase {
 
   //Hardware ----------------------------------------------------------------->
-  private final XboxController operatorControl = new XboxController(1); //declaración del control dentro del puerto 1
+  private final XboxController operatorControl = new XboxController(Constants.kOperatorControlPort); //declaración del control dentro del puerto 1
+  private final XboxController driverControl = new XboxController(Constants.kDriverControlPort); //declaración del control para usarlo en robot
 
   //INPUTS ------------------------------------------------------------------>
 
@@ -32,8 +34,28 @@ public class ControlBoard1 extends SubsystemBase {
     return operatorControl.getRawAxis(X_LeftAxis);
   }
 
+  public double getControlYAxisLeft(){
+    return driverControl.getRawAxis(1);
+  }
+
+  public double getControlXAxisRight(){
+    return driverControl.getRawAxis(4);
+  }
+
   public boolean getControlAButton(){ //función que regresa el estado del botón A
       return operatorControl.getRawButton(A_Button); //mandar llamar el ID del control correspondiente al boton A (1)
+  }
+
+  public double getDirectThrottle(){
+    return ( driverControl.getRawAxis(3)-driverControl.getRawAxis(2) );
+  }
+
+  public boolean getAIntakeButton(){
+    return driverControl.getRawButton(1);
+  }
+
+  public boolean getBArmButton(){
+    return driverControl.getRawButton(2);
   }
 
   //todas las funciones de arriba se pueden heredar en otros archivos
