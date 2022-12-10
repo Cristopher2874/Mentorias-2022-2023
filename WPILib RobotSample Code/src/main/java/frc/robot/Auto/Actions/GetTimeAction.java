@@ -9,15 +9,29 @@ public class GetTimeAction{
   public void autoAbsoluteTimeControl(){
     absoluteTimer = Timer.getFPGATimestamp();
   }
+
+  /*
+  Esta función de arriba es la que se manda llamar en el Autonomous Periodic
+  */
+
   public void autoRelativeTimeControl(){
     relativeTimer = Timer.getFPGATimestamp();
   }
+  
+  /*
+  Esta función de arriba es la que se manda llamar en el Autonomous Init
+  */
+
   public double getAbsoluteTimer(){
     return absoluteTimer;
   }
   public double getRelativeTimer(){
     return relativeTimer;
   }
+
+  /*
+  Las dos funciones de arriba son para recuperar el valor de los timers que se mandan llamar en el autonomo
+  */
 }
 
 /*-------------------------------------------------------------------------------------------->

@@ -30,8 +30,8 @@ public class ControlBoard1 extends SubsystemBase {
     return operatorControl.getRawButton(4);
   }
 
-  public double getControlXAxis(){
-    return operatorControl.getRawAxis(X_LeftAxis);
+  public double getControlYAxis(){
+    return operatorControl.getRawAxis(Y_LeftAxis);
   }
 
   public double getControlYAxisLeft(){

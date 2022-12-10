@@ -1,12 +1,18 @@
 package frc.robot.Auto.Actions;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import frc.robot.subsystems.DriveExample;
 
 public class StopAction {
-    DriveExample mDriveExampleAuto = new DriveExample();
+    DriveExample mAutoDriveExample = new DriveExample();
 
     public void finalStopAction(){
-        mDriveExampleAuto.outMotoresAuto(0, 0, 0, 0);
+    mAutoDriveExample.mMotor1FrontRight.set(ControlMode.PercentOutput, 0);
+    mAutoDriveExample.mMotor2BackRight.set(ControlMode.PercentOutput, 0);
+    mAutoDriveExample.mMotor3FrontLeft.set(ControlMode.PercentOutput, 0);
+    mAutoDriveExample.mMotor4BackLeft.set(ControlMode.PercentOutput, 0);
+        //mDriveExampleAuto.outMotoresAuto(0, 0, 0, 0);
     }
 }
 

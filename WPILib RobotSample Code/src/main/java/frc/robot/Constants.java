@@ -15,5 +15,5 @@ public final class Constants {
     public static final double kJoystickDeadband = 0.15;
 
     //Intake Subsistem
-    public static final int kIntakeId = 7;
+    public static final int kIntakeId = 6;
 }
